@@ -1,22 +1,31 @@
+import unittest
+from gilded_rose import Item, GildedRose
+
 class GildedRoseTest(unittest.TestCase):
-    def test_foo(self):
-        items = [Item("foo", 0, 0)]
-    # example of test that checks for logical errors
-    def test_sulfuras_should_not_decrease_quality(self):
-        items = [Item("Sulfuras", 5, 80)]
+
+    def test_normal_item_quality_decreases(self):
+        items = [Item("normal item", 5, 10)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEquals("fixme", items[0].name)
-        sulfuras_item = items[0]
-        self.assertEqual(80, sulfuras_item.quality)
-        self.assertEqual(4, sulfuras_item.sell_in)
-        self.assertEqual("Sulfuras", sulfuras_item.name)
-    # example of test that checks for syntax errors
-    def test_gilded_rose_list_all_items(self):
-        items = [Item("Sulfuras", 5, 80)]
+        self.assertEqual(items[0].quality, 9)
+
+    def test_aged_brie_quality_increases(self):
+        items = [Item("Aged Brie", 5, 10)]
         gilded_rose = GildedRose(items)
-        all_items = gilded_rose.get_item()
-        self.assertEqual(["Sulfuras"], all_items)
+        gilded_rose.update_quality()
+        self.assertEqual(items[0].quality, 11)
 
+    def test_sulfuras_never_changes(self):
+        items = [Item("Sulfuras, Hand of Ragnaros", 5, 80)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(items[0].quality, 80)
 
-if __name__ == '__main__':
+    def test_conjured_quality_decreases_twice_as_fast(self):
+        items = [Item("Conjured Mana Cake", 5, 10)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(items[0].quality, 8)
+
+if __name__ == "__main__":
+    unittest.main()
