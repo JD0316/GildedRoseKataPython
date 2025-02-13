@@ -39,6 +39,14 @@ class BackstagePassStrategy(ItemStrategy):
             self.item.quality = 0
         self.item.sell_in -= 1
 
+class ConjuredItemStrategy(ItemStrategy):
+    def update_quality(self):
+        if self.item.quality > 0:
+            self.item.quality -= 2 
+        self.item.sell_in -= 1
+        if self.item.sell_in < 0 and self.item.quality > 0:
+            self.item.quality -= 2  
+
 
 class Item:
     """ DO NOT CHANGE THIS CLASS!!!"""
@@ -66,10 +74,13 @@ class GildedRose:
             return SulfurasStrategy(item)
         elif "Backstage passes" in item.name:
             return BackstagePassStrategy(item)
-        elif "Conjured" in item.name:
+        elif "Conjured" in item.name:  # 确保 Conjured 物品使用正确策略
             return ConjuredItemStrategy(item)
         else:
             return NormalItemStrategy(item)
+
+
+    
 
 
 
