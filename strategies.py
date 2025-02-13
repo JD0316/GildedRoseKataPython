@@ -29,6 +29,9 @@ class ConjuredItemStrategy(ItemStrategy):
             item.quality -= 2
         
         item.quality = max(0, min(50, item.quality))
+        print("DEBUG: item.name repr =", repr(item.name))
+        print("DEBUG: startswith('Conjured') =", item.name.startswith("Conjured"))
+        print("DEBUG: 'Conjured' in item.name =", "Conjured" in item.name)
 
 
 class AgedBrieStrategy(ItemStrategy):
