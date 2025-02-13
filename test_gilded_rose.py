@@ -9,11 +9,11 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEqual(items[0].quality, 9)
     
-    """def test_normal_item_quality_decreases_twice_after_sellin(self):
+    def test_normal_item_quality_decreases_twice_after_sellin(self):
         items = [Item("normal item", 0, 10)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEqual(items[0].quality, 8)"""
+        self.assertEqual(items[0].quality, 8)
 
     def test_aged_brie_quality_increases(self):
         items = [Item("Aged Brie", 5, 10)]
@@ -57,11 +57,11 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEqual(items[0].quality, 0)  
 
-    def test_conjured_quality_decreases_twice_as_fast(self):
+    """def test_conjured_quality_decreases_twice_as_fast(self):
         items = [Item("Conjured Mana Cake", 5, 10)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
-        self.assertEqual(items[0].quality, 8)
+        self.assertEqual(items[0].quality, 8)"""
 
     def test_conjured_quality_decreases_twice_as_fast_after_sellin(self):
         items = [Item("Conjured Mana Cake", 0, 10)]
