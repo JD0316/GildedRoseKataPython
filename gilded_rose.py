@@ -24,7 +24,7 @@ class GildedRose(object):
                 continue
 
             # 计算质量下降速度（Conjured 降 2，普通降 1）
-            degrade = 2 if "Conjured" in item.name else 1
+            degrade = 2 if item.name.startswith("Conjured") else 1
 
             # 处理普通物品 & 特殊物品的质量变化
             if item.name == "Aged Brie":
